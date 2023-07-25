@@ -30,7 +30,7 @@ public class EmpController {
     return empService.updateEmployee(employee);
     }
 
-    @DeleteMapping(path = "/deleteEmployee")
+    @DeleteMapping(path = "/deleteEmployees")
     public String deleteEmployee(@RequestBody Employee employee){
     return empService.deleteEmployee(employee.getEmpId());
     }
