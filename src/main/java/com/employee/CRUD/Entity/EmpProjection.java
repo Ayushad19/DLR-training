@@ -6,7 +6,7 @@ public interface EmpProjection {
     String getEmpName();
     Long getSalary();
 
-   // Department getDepartment();
+    String getDeptName();
 
 
 }

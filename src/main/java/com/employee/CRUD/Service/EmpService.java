@@ -40,6 +40,7 @@ public String saveEmployee(Employee employee){
 
     employee.setDeptName(department.getDeptName());
     empRepository.save(employee);
+    deptRepository.save(department);
 
      return "Employee "+employee.getEmpName()+" added successfully";
 }
