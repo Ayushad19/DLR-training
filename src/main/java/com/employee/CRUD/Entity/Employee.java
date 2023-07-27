@@ -27,8 +27,6 @@ public class Employee {
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "deptId", referencedColumnName = "deptId")
     private Department department;
-    @Transient
-    private String deptName;
     private long salary;
 
     public Employee(int empId, String empName,long salary) {

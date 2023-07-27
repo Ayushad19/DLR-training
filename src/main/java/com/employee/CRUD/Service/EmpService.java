@@ -23,26 +23,29 @@ private DeptRepository deptRepository;
 @Autowired
 private WebClient.Builder webClientBuilder;
 
-//@Autowired
-//public EmpService(EmpRepository empRepository, DeptRepository deptRepository,
-//                  WebClient.Builder webClientBuilder){
-//    this.empRepository = empRepository;
-//    this.deptRepository = deptRepository;
-//    this.webClientBuilder = webClientBuilder;
-//}
+@Autowired
+public EmpService(EmpRepository empRepository, DeptRepository deptRepository,
+                  WebClient.Builder webClientBuilder){
+    this.empRepository = empRepository;
+    this.deptRepository = deptRepository;
+    this.webClientBuilder = webClientBuilder;
+}
 
 
     //Create method   CCCCCCCCCCCCreate
-public String saveEmployee(Employee employee){
 
-    Department department = deptRepository.findById(employee.getDepartment().getDeptId())
-            .orElseThrow(() -> new IllegalArgumentException("Invalid department ID"));
+    public Employee saveEmployee(Employee employee) {
+    int deptId;
+    if (deptRepository.findByDeptName(employee.getDepartment().getDeptName()).isPresent()){
+        deptId = deptRepository.findByDeptName(employee.getDepartment().getDeptName()).get().getDeptId();
+        employee.getDepartment().setDeptId(deptId);
 
-    employee.setDeptName(department.getDeptName());
-    empRepository.save(employee);
-    deptRepository.save(department);
+    }else {
+        deptRepository.save(employee.getDepartment());
+    }
 
-     return "Employee "+employee.getEmpName()+" added successfully";
+
+        return empRepository.save(employee);
 }
 
     //Read or Get method   RRRRRRRRRRRRead

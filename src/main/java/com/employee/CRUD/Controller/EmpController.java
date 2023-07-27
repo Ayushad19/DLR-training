@@ -16,7 +16,7 @@ public class EmpController {
     private EmpService empService;
 
     @PostMapping(path = "/addEmployee")
-    public String saveEmployee(@RequestBody Employee employee){
+    public Employee saveEmployee(@RequestBody Employee employee){
     return empService.saveEmployee(employee);
     }
 
