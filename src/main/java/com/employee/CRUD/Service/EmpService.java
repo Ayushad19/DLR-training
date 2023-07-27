@@ -10,6 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
+
 import java.util.List;
 
 @Service
@@ -77,11 +79,21 @@ public EmpService(EmpRepository empRepository, DeptRepository deptRepository,
     }
 
     //Web client
+    //GET
     public Flux<Branch> getBranch(){
     return webClientBuilder.build()
             .get()
             .uri("http://localhost:8091/branches/getBranches")
             .retrieve()
             .bodyToFlux(Branch.class);
+    }
+    //POST
+    public Flux<Branch> savingBranch(Branch branch){
+        return webClientBuilder.build()
+                .post()
+                .uri("http://localhost:8091/branches/saveBranch")
+                .body(Mono.just(getBranch()), Branch.class)
+                .retrieve()
+                .bodyToFlux(Branch.class);
     }
 }

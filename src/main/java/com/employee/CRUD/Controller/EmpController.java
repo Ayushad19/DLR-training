@@ -38,4 +38,9 @@ public class EmpController {
     public Flux<Branch> getBranch(){
         return empService.getBranch();
     }
+
+    @PostMapping(path = "/saveBranches")
+    public Flux<Branch> savingBranch(@RequestBody Branch branch){
+        return empService.savingBranch(branch);
+    }
 }
