@@ -29,9 +29,11 @@ public class Employee {
     private Department department;
     private long salary;
 
-    public Employee(int empId, String empName,long salary) {
+    public Employee(int empId, String empName,long salary, Department department) {
         this.empId = empId;
         this.empName = empName;
         this.salary = salary;
+        this.department = department;
     }
+
 }

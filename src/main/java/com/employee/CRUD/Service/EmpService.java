@@ -53,7 +53,7 @@ public EmpService(EmpRepository empRepository, DeptRepository deptRepository,
     //Read or Get method   RRRRRRRRRRRRead
     public List<EmpProjection> getAllEmployees(){
 
-        return empRepository.findAllEmployee();
+        return empRepository.findAllEmployeesWithDepartment();
     }
 
 

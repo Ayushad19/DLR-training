@@ -12,8 +12,11 @@ import java.util.List;
 @Repository
 public interface EmpRepository extends JpaRepository<Employee, Integer> {
 //Use native query to fetch only employee name and salary
-    @Query("SELECT new com.employee.CRUD.Entity.Employee(e.empId, e.empName, e.salary) FROM Employee e")
-    List<EmpProjection> findAllEmployee();
+@Query("SELECT new com.employee.CRUD.Entity.Employee(e.empId, e.empName, e.salary, e.department) FROM Employee e JOIN e.department")
+List<EmpProjection> findAllEmployeesWithDepartment();
+
+//    @Query("SELECT new com.employee.CRUD.Entity.Employee(e.empId, e.empName, e.salary, e.department) FROM Employee e JOIN FETCH e.department")
+//    List<EmpProjection> findAllEmployeesWithDepartment();
 //    @Query("SELECT empName, salary FROM Employees")
 //    List<Employee> findAllEmployee();
 }
